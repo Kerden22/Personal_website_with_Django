@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projelerim</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #004c99;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #003366;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            padding: 20px;
+        }
+        .project-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .project-list li {
+            background-color: #f4f4f4;
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 5px solid #003366;
+        }
+
+          /* Proje içindeki görüntü ayarları */
+       .proje img {
+        max-width: 100%; /* Konteynere sığdır */
+        height: auto; /* En boy oranını koru */
+        width: 150px; /* Özel genişlik */
+        }
+
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        .btn-detaylar {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn-detaylar:hover {
+            background-color: #004c99;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Projelerim</h1>
+    </header>
+    <nav>
+        <a href="/">Anasayfa</a>
+        <a href="/projeler">Projeler</a>
+    </nav>
+    <div class="container">
+        <h2>Projelerim</h2>
+        {% for kategori in kategoriler %}
+            <div class="category">
+                <h2>{{ kategori.name }}</h2> <!-- Kategori adı -->
+                <div id="projeler">
+                    {% for proje in projeler %}
+                        {% if proje.kategori.id == kategori.id %} <!-- Proje kategorisi kontrolü -->
+                            <div class="proje">
+                                <h3>{{ proje.proje_adi }}</h3>
+                                <p>{{ proje.aciklama }}</p>
+                                <img src="{% static 'img/' %}{{ proje.resim }}" alt="Proje Resmi">
+                                <a href="{% url 'detaylar' proje.id %}" class="btn-detaylar">Detaylar</a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <footer>
+        <p>&copy; 2024 Kişisel Web Sitesi</p>
+    </footer>
+</body>
+</html>

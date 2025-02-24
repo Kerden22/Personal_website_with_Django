@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proje Detayları</title>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .proje-detay {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .proje-detay h2 {
+            font-size: 2.5rem;
+            color: #444;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .proje-detay p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .proje-detay img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .proje-detay img:hover {
+            transform: scale(1.05);
+        }
+
+        .proje-detay strong {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            color: white;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="proje-detay">
+            <h2>{{ proje.proje_adi }}</h2>
+            <p>{{ proje.aciklama }}</p>
+            <img src="{% static 'img/' %}{{ proje.resim }}" alt="Proje Resmi">
+            <p><strong>Proje ID:</strong> {{ proje.id }}</p>
+            <a href="{% url 'home' %}" class="back-btn">Geri Dön</a>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 <a href="#">Proje Yönetim Platformu</a>. Tüm hakları saklıdır.
+    </footer>
+</body>
+</html>

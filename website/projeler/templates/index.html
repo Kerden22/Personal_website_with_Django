@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kişisel Web Sitesi</title>
+    <style>
+      /* Tüm sayfa ve body ayarları */
+      html,
+      body {
+        height: 100%; /* Sayfa yüksekliğini tam yap */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column; /* Flexbox düzeni */
+      }
+
+      /* İçerik konteyneri */
+      .container {
+        flex: 1; /* Boşlukları doldurarak footer'ı alta iter */
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* Genel body stili */
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      /* Header ayarları */
+      header {
+        background-color: #004c99;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+      }
+
+      /* Navigasyon ayarları */
+      nav {
+        background-color: #003366;
+        padding: 10px;
+        text-align: center;
+      }
+
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+       /* Proje içindeki görüntü ayarları */
+       .proje img {
+        max-width: 100%; /* Konteynere sığdır */
+        height: auto; /* En boy oranını koru */
+        width: 150px; /* Özel genişlik */
+      }
+
+      /* Footer ayarları */
+      footer {
+        background-color: #003366;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Hoş Geldiniz!</h1>
+    </header>
+    <nav>
+      <a href="/">Anasayfa</a>
+      <a href="/projeler">Projeler</a>
+    </nav>
+    <div class="container">
+      <h2>Ana Sayfa</h2>
+      <p>
+        Merhaba! Bu benim kişisel web sitemin ana sayfası. Buradan projelerime
+        ulaşabilirsiniz.
+      </p>
+      <p>Daha fazla bilgi için yukarıdaki menüyü kullanabilirsiniz.</p>
+
+      <div id="projeler">
+        {% for proje in projeler %}
+            {% if proje.anasayfa %}
+                <div class="proje">
+                    <h3>{{ proje.proje_adi }}</h3>
+                    <p>{{ proje.acıklama }}</p>
+                    <img
+                    src="{% static 'img/' %}{{ proje.resim }}"
+                    alt="Proje Resmi"
+                    />
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+    <footer>
+      <p>&copy; Web Sitesi</p>
+    </footer>
+  </body>
+</html>
